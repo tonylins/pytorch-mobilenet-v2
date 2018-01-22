@@ -13,7 +13,7 @@ The top-1 accuracy on the ImageNet from the paper is **71.7%**. My current resul
 | Optimizer     | Epoch | Top1-acc | Pretrained Model                         |
 | ------------- | ----- | -------- | ---------------------------------------- |
 | RMSprop       | -     | -        | -                                        |
-| SGD           | 184   | 70.636%  | [[google drive](https://drive.google.com/open?id=1MXBud3DIpwH3dKugQcVsobdU_1ehuKZD)] |
+| SGD           | 192   | 70.75%   | [[google drive](https://drive.google.com/open?id=1QbbqGcXd7hsvmZjv5RjEb0huMzUlsGra)] |
 | SGD + RMSprop | TODO  | TODO     | TODO                                     |
 
 (The training is still going on since I do not have many GPUs :(, I'll update the link if I obtain better results.)
