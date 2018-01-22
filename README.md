@@ -13,7 +13,7 @@ The top-1 accuracy on the ImageNet from the paper is **71.7%**. My current resul
 | Optimizer     | Epoch | Top1-acc | Pretrained Model                         |
 | ------------- | ----- | -------- | ---------------------------------------- |
 | RMSprop       | -     | -        | -                                        |
-| SGD           | 137   | 69.46%   | [google drive](https://drive.google.com/open?id=1uKknH1HVPuKA9bJ7_gRBWoinKED_hidO) |
+| SGD           | 184   | 70.636%  | [[google drive](https://drive.google.com/open?id=1MXBud3DIpwH3dKugQcVsobdU_1ehuKZD)] |
 | SGD + RMSprop | TODO  | TODO     | TODO                                     |
 
 (The training is still going on since I do not have many GPUs :(, I'll update the link if I obtain better results.)
@@ -24,10 +24,7 @@ To use the pretrained model, run
 ```python
 from MobileNetV2 import MobileNetV2
 
-net = models.MobileNetV2(1000)
-net = torch.nn.DataParallel(net, list(range(4)))
-net = net.cuda()
-
+net = models.MobileNetV2(n_class=1000)
 state_dict = torch.load('mobilenetv2.pth.tar')
 net.load_state_dict(state_dict)
 ```
