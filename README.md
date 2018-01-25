@@ -2,8 +2,10 @@
 
 This is a PyTorch implementation of MobileNetV2 architecture as described in the paper [Inverted Residuals and Linear Bottlenecks: Mobile Networks for Classification, Detection and Segmentation](https://arxiv.org/pdf/1801.04381).
 
+**Note**: some part of the network structure is not described clearly in the paper, so the implementation correctness is not guaranteed. Thanks for all your feedbacks.
 
 ## Training & Accuracy
+
 I tried to train the model with RMSprop from scratch as described in the paper, but it does not seem to work. 
 
 I am currently training the model with SGD and keeping other hyper-parameters the same (except that I use batch size 256). I will also try fine-tuning with RMSprop from SGD checkpoint in the future.
