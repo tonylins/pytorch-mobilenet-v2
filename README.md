@@ -2,7 +2,7 @@
 
 This is a PyTorch implementation of MobileNetV2 architecture as described in the paper [Inverted Residuals and Linear Bottlenecks: Mobile Networks for Classification, Detection and Segmentation](https://arxiv.org/pdf/1801.04381).
 
-**Note**: some part of the network structure is not described clearly in the paper, so the implementation correctness is not guaranteed. Thanks for all your feedbacks.
+<u>* Special thanks to @wangkuan for providing the model with 71.8% top-1 acc!</u>
 
 ## Training & Accuracy
 
@@ -10,15 +10,13 @@ I tried to train the model with RMSprop from scratch as described in the paper, 
 
 I am currently training the model with SGD and keeping other hyper-parameters the same (except that I use batch size 256). I will also try fine-tuning with RMSprop from SGD checkpoint in the future.
 
-The top-1 accuracy on the ImageNet from the paper is **71.7%**. My current result is:
+The top-1 accuracy on the ImageNet from the paper is **71.7%**. Our current result is **slightly higher**:
 
-| Optimizer     | Epoch | Top1-acc | Pretrained Model                         |
-| ------------- | ----- | -------- | ---------------------------------------- |
-| RMSprop       | -     | -        | -                                        |
-| SGD           | 233   | 71.162%  | [[google drive](https://drive.google.com/open?id=1yr6mXeznvvr7iw9_4FKkyGc-nFRWGd3O)] |
-| SGD + RMSprop | TODO  | TODO     | TODO                                     |
-
-(The training is still going on since I do not have many GPUs :(, I'll update the link if I obtain better results.)
+| Optimizer     | Epoch | Top1-acc  | Pretrained Model                                             |
+| ------------- | ----- | --------- | ------------------------------------------------------------ |
+| RMSprop       | -     | -         | -                                                            |
+| SGD           | -     | **71.8%** | [[google drive]( <https://drive.google.com/file/d/1nFZhtKQcw_PeMg8ZZDLdWBcnzqx67hY9/view?usp=sharing)] |
+| SGD + RMSprop | TODO  | TODO      | TODO                                                         |
 
 ## Usage
 To use the pretrained model, run
