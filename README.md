@@ -27,7 +27,8 @@ To use the pretrained model, run
 from MobileNetV2 import MobileNetV2
 
 net = MobileNetV2(n_class=1000)
-state_dict = torch.load('mobilenetv2.pth.tar')
+net = torch.nn.DataParallel(net).cuda()
+state_dict = torch.load('mobilenetv2_718.pth.tar')
 net.load_state_dict(state_dict)
 ```
 
