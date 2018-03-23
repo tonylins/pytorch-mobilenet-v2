@@ -15,7 +15,7 @@ The top-1 accuracy on the ImageNet from the paper is **71.7%**. Our current resu
 | Optimizer     | Epoch | Top1-acc  | Pretrained Model                                             |
 | ------------- | ----- | --------- | ------------------------------------------------------------ |
 | RMSprop       | -     | -         | -                                                            |
-| SGD           | -     | **71.8%** | [[google drive]( <https://drive.google.com/file/d/1nFZhtKQcw_PeMg8ZZDLdWBcnzqx67hY9/view?usp=sharing)] |
+| SGD           | -     | **71.8%** | [[google drive](https://drive.google.com/file/d/1nFZhtKQcw_PeMg8ZZDLdWBcnzqx67hY9/view?usp=sharing)] |
 | SGD + RMSprop | TODO  | TODO      | TODO                                                         |
 
 ## Usage
