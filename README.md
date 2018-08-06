@@ -16,6 +16,7 @@ Here is a comparison of statistics against the official TensorFlow [implementati
 | Ours        | 300.775 M | 3.471 M    | **71.8%** | [[google drive](https://drive.google.com/open?id=1jlto6HRVD3ipNkAl1lNhDbkBp7HylaqR)] |
 
 ## Usage
+
 To use the pretrained model, run
 
 ```python
@@ -58,4 +59,3 @@ val_loader = torch.utils.data.DataLoader(
     batch_size=batch_size, shuffle=False,
     num_workers=n_worker, pin_memory=True)
 ```
-
