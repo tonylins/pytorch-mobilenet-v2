@@ -4,9 +4,18 @@ This is a PyTorch implementation of MobileNetV2 architecture as described in the
 
 <u>**[NEW]** I fixed a difference in implementation compared to the official TensorFlow model. Please use the new model file and checkpoint!</u>
 
-## Training & Accuracy
+## Training Recipe
 
-I tried to train the model with RMSprop from scratch as described in the paper, but it does not seem to work. I currently train the model with SGD and keeping other hyper-parameters the same (except that I use batch size 256).
+Recently I have figured out a good training setting:
+
+1. number of epochs: 150
+2. learning rate schedule: cosine learning rate, initial lr=0.05
+3. weight decay: 4e-5
+4. remove dropout
+
+You should get >72% top-1 accuracy with this training recipe!
+
+## Accuracy & Statistics
 
 Here is a comparison of statistics against the official TensorFlow [implementation](https://github.com/tensorflow/models/tree/master/research/slim/nets/mobilenet).
 
