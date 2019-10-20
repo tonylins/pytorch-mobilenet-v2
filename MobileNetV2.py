@@ -18,13 +18,18 @@ def conv_1x1_bn(inp, oup):
     )
 
 
+def make_divisible(x, divisible_by=8):
+    import numpy as np
+    return int(np.ceil(x * 1. / divisible_by) * divisible_by)
+
+
 class InvertedResidual(nn.Module):
     def __init__(self, inp, oup, stride, expand_ratio):
         super(InvertedResidual, self).__init__()
         self.stride = stride
         assert stride in [1, 2]
 
-        hidden_dim = round(inp * expand_ratio)
+        hidden_dim = int(inp * expand_ratio)
         self.use_res_connect = self.stride == 1 and inp == oup
 
         if expand_ratio == 1:
@@ -78,12 +83,12 @@ class MobileNetV2(nn.Module):
 
         # building first layer
         assert input_size % 32 == 0
-        input_channel = int(input_channel * width_mult)
-        self.last_channel = int(last_channel * width_mult) if width_mult > 1.0 else last_channel
+        # input_channel = make_divisible(input_channel * width_mult)  # first channel is always 32!
+        self.last_channel = make_divisible(last_channel * width_mult) if width_mult > 1.0 else last_channel
         self.features = [conv_bn(3, input_channel, 2)]
         # building inverted residual blocks
         for t, c, n, s in interverted_residual_setting:
-            output_channel = int(c * width_mult)
+            output_channel = make_divisible(c * width_mult) if t > 1 else c
             for i in range(n):
                 if i == 0:
                     self.features.append(block(input_channel, output_channel, s, expand_ratio=t))
@@ -96,10 +101,7 @@ class MobileNetV2(nn.Module):
         self.features = nn.Sequential(*self.features)
 
         # building classifier
-        self.classifier = nn.Sequential(
-            nn.Dropout(0.2),
-            nn.Linear(self.last_channel, n_class),
-        )
+        self.classifier = nn.Linear(self.last_channel, n_class)
 
         self._initialize_weights()
 
@@ -123,3 +125,26 @@ class MobileNetV2(nn.Module):
                 n = m.weight.size(1)
                 m.weight.data.normal_(0, 0.01)
                 m.bias.data.zero_()
+
+
+def mobilenet_v2(pretrained=True):
+    model = MobileNetV2(width_mult=1)
+
+    if pretrained:
+        try:
+            from torch.hub import load_state_dict_from_url
+        except ImportError:
+            from torch.utils.model_zoo import load_url as load_state_dict_from_url
+        state_dict = load_state_dict_from_url(
+            'https://www.dropbox.com/s/47tyzpofuuyyv1b/mobilenetv2_1.0-f2a8633.pth.tar?dl=1', progress=True)
+        model.load_state_dict(state_dict)
+    return model
+
+
+if __name__ == '__main__':
+    net = mobilenet_v2(True)
+
+
+
+
+

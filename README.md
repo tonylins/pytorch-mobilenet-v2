@@ -2,7 +2,7 @@
 
 This is a PyTorch implementation of MobileNetV2 architecture as described in the paper [Inverted Residuals and Linear Bottlenecks: Mobile Networks for Classification, Detection and Segmentation](https://arxiv.org/pdf/1801.04381).
 
-<u>**[NEW]** I fixed a difference in implementation compared to the official TensorFlow model. Please use the new model file and checkpoint!</u>
+<u>**[NEW]** Add the code to automatically download the pre-trained weights.</u>
 
 ## Training Recipe
 
@@ -29,11 +29,9 @@ Here is a comparison of statistics against the official TensorFlow [implementati
 To use the pretrained model, run
 
 ```python
-from MobileNetV2 import MobileNetV2
+from MobileNetV2 import mobilenet_v2
 
-net = MobileNetV2(n_class=1000)
-state_dict = torch.load('mobilenetv2.pth.tar') # add map_location='cpu' if no gpu
-net.load_state_dict(state_dict)
+net = mobilenet_v2(pretrained=True)
 ```
 
 ## Data Pre-processing
